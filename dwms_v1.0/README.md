@@ -1,10 +1,9 @@
-# Dude Where's My Shuttle? (WIP)
+# Dude Where's My Shuttle?
+## Prototype Version 1.0
 
 The goal of this application is to update students of the University of Nebraska
-campus of when a shuttle is going to show up. 
-To accomplish this we used a Raspberry Pi (RPi) and FONA 808 GSM/GPS breakout board.
-The FONA is capable of using serial "AT" commands to get, set, receive, and transfer data
-from it's built in GPS and 2G GSM hardware.
+campus of when a shuttle is going to show up. To accomplish this we used a Raspberry Pi (RPi) and FONA 808 GSM/GPS breakout board.
+The FONA is capable of using serial "AT" commands to get, set, receive, and transfer data from it's built in GPS and 2G GSM hardware.
 
 ## To begin the following hardware was used:
 <ol>
@@ -61,4 +60,4 @@ Hardware setup for serial communication between the RPi and GPS breakout via USB
 		<p>The above hardware device files may be different depending on the users setup to find your devices use the <i>ls</i> command.</p>
 	</li>
 </ol>
-Copy config files from rpi_config_files directory to their proper location
+Copy config files from rpi_config_files directory to their proper location (most go in the /etc/ directory).
