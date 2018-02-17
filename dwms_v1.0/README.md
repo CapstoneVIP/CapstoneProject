@@ -1,14 +1,12 @@
-#Dude Where's My Shuttle? (WIP)
+# Dude Where's My Shuttle? (WIP)
 
-<p>The goal of this application is to update students of the University of Nebraska
-	campus of when a shuttle is going to show up. 
-	To accomplish this we used a Raspberry Pi (RPi) and FONA 808 GSM/GPS breakout board.
-	The FONA is capable of using serial "AT" commands to get, set, receive, and transfer data
-	from it's built in GPS and 2G GSM hardware.
-</p>
+The goal of this application is to update students of the University of Nebraska
+campus of when a shuttle is going to show up. 
+To accomplish this we used a Raspberry Pi (RPi) and FONA 808 GSM/GPS breakout board.
+The FONA is capable of using serial "AT" commands to get, set, receive, and transfer data
+from it's built in GPS and 2G GSM hardware.
 
-
-##To begin the following hardware was used:
+## To begin the following hardware was used:
 <ol>
 	<li><a href="https://www.raspberrypi.org/products/model-b/">Raspberry Pi Model B</a></li>
 	<li><a href="https://www.adafruit.com/products/2542">FONA 808 GSM/GPS Breakout</a></li>
@@ -23,9 +21,9 @@
 	<li>SD card (4GB+ recommended)</li> 
 </ol>
 
-###Hardware Setup:
-<p>Hardware setup for serial communication between the RPi and FONA:</p>
-####Pin setup:
+### Hardware Setup:
+Hardware setup for serial communication between the RPi and FONA:
+#### Pin setup:
 <ul>
 	<li>RPi 3.3 volt to FONA Vio</li>
 	<li>RPi Ground to FONA GND</li>
@@ -36,7 +34,7 @@
 			<li>FONA Key to FONA GND</li>
 		</ul>
 </ul>
-<p>Hardware setup for serial communication between the RPi and GPS breakout via USB serial</p>
+Hardware setup for serial communication between the RPi and GPS breakout via USB serial
 <ul>
 	<li>Serial Red to GPS breakout VIN</li>
 	<li>Serial Black to GPS breakout GND</li>
@@ -44,7 +42,7 @@
 	<li>Serial White to GPS breakout TX</li>
 </ul>
 
-##The following software was used:
+## The following software was used:
 <ol>
 	<li>Raspbian Jessie Lite <a href="https://drive.google.com/file/d/0B4dklNKVEGmEdVVMMTlDWldBLWM/view?usp=sharing" >(2015-11-21-raspbian-jessie-lite.zip</a>)</li>
 	<p>Burn Rasian to the SD card using dd, rufus, or other utilites to burn the image file.</p>
@@ -63,4 +61,4 @@
 		<p>The above hardware device files may be different depending on the users setup to find your devices use the <i>ls</i> command.</p>
 	</li>
 </ol>
-<p>Copy config files from rpi_config_files directory to their proper location</p>
+Copy config files from rpi_config_files directory to their proper location
