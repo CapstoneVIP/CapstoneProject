@@ -25,7 +25,7 @@ set -e
 # OrangePi i96           RDA8810
 
 whiptail --title "OrangePi Build System" --msgbox \
- "`figlet OrangePi` It's funny to build owner Linux system!        Let's go to Linux World with OrangePi" \
+ "`figlet OrangePi` It's funny to build your own Linux system!       Let's enter the Linux World with the OrangePi" \
           15 50 0
 
 MENUSTR="Plase select build option"
