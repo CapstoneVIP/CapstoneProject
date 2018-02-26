@@ -1,0 +1,74 @@
+GUIDE: https://www.sitepoint.com/angular-2-tutorial/
+
+
+Node.js installed	//Version check it
+node -v
+npm -v
+
+npm install -g @angular-cli //globally install the angular-cli
+ng version //version check
+
+ng new app_name //init app, and create needed directories
+ng serve //local development server on http://localhost:4200/
+
+//Creates a 'todo' class w/ --spec for unit testingc
+ng generate class Todo --spec 
+
+ng test // Run the unit tests (Karma/Jasmine)
+
+ng generate service TodoData //Creates a service
+ng generate component ______ //Creates a component adds values to app.module.ts automatically as well.
+
+Services registered in AppModule are available to all components in the entire application.
+
+For css add the css folder under assets, and include in .angular-cli.json styles sheet
+
+/************** Mock Back End REST API *********************************/
+npm install json-server --save
+
+//In root directory add a file called 'db.json' with the following....
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Read SitePoint article",
+      "complete": false
+    },
+    {
+      "id": 2,
+      "title": "Clean inbox",
+      "complete": false
+    },
+    {
+      "id": 3,
+      "title": "Make restaurant reservation",
+      "complete": false
+    }
+  ]
+} 
+
+//And then add a script to package.json to start the back end...
+"scripts": {
+  ...
+  "json-server": "json-server --watch db.json"
+}
+
+//Run the json server
+npm run json-server
+
+//Now check that it is running correctly...
+http://localhost:3000
+
+Angular supports the dev and prod environments naturally in app/environments/___ , 
+by default the dev environment is always called unless when we 'ng serve' or 
+'ng build' we specify 'ng serve --environment prod' or 'ng build --environment prod'
+
+//Creating ApiService to communicate with REST API
+
+//Creates service, but also registers it as provider in the Angular module defined in app.module.ts
+ng generate service Api --module app.module.ts
+
+
+
+
+
