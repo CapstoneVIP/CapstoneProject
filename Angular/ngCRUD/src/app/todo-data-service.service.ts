@@ -1,4 +1,5 @@
 /*
+Handles all communication with the API backend
 Works with the Asynchronous calls handled by REST Api
 */
 import { Injectable } from '@angular/core';
