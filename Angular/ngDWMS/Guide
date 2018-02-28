@@ -42,3 +42,59 @@ Using 'ng generate', will automatically add the values app.module.ts. Services r
 Run the unit tests via cmd line, it will pull up and run in a browser.
 	ng test
 
+
+--- Leaflet ---
+Guide: https://www.npmjs.com/package/@asymmetrik/angular2-leaflet
+
+Install Leaflet
+	npm install leaflet
+	npm install @asymetrik/angular2-leaflet
+
+Install the typescript library for Leaflet
+	npm install @types/leaflet
+
+Add styles to .angular-cli.json and reload the server
+
+Import code dependencies and module through app.module.ts imports: []
+
+Create leaflet.component.ts, leaflet.component.html, leaflet.model.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
