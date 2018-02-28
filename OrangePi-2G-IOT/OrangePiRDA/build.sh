@@ -1,0 +1,1 @@
+/home/frankenstein/dwms/github/OrangePiRDA/OrangePi-2G-IOT/OrangePiRDA/scripts/build.sh
