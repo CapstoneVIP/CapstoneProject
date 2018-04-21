@@ -12,14 +12,18 @@ module.exports =   {
 
   //User Attributes
   attributes: {
-    name: {
+    firstname: {
       type: 'string',
       required: true
     },
+		lastname: {
+			type: 'string',
+			required: true
+		},
     roles: {
       type: 'string',
       defaultsTo: "DEFAULT_USER"
-          },
+     },
     email: {
       type: 'string',
 	  required: true,
@@ -74,9 +78,6 @@ module.exports =   {
    * sails-hook-validation dependency
    */
   validationMessages: { //hand for i18n & l10n
-    names: {
-      required: 'Name is required'
-    },
     email: {
       email: 'Provide valid email address',
       required: 'Email is required',

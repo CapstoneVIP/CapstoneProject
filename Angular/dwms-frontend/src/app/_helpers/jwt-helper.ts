@@ -1,4 +1,4 @@
-import {IUser} from "../interfaces/iuser";
+import { User } from "../_models/user.model";
 
 export class JwtHelper {
 
@@ -62,7 +62,7 @@ export class JwtHelper {
    * this is used to decode our token if passed or pick it from the local storage
    * @param token
    */
-  public decodeToken(token?: string): IUser {
+  public decodeToken(token?: string): User {
 
     if (token == null) {
       token = localStorage.getItem('token');

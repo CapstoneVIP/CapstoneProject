@@ -5,16 +5,22 @@ import { HttpModule,  XHRBackend } from '@angular/http';
 import { RequestOptions } from '@angular/http';
 import { RouterModule } from '@angular/router'
 import { APP_ROUTES } from './app.routes';
-import { ApiHandler } from './providers/api-handler.service';
+
+//Modules
+import { DashboardModule } from "./dashboard/dashboard.module";
+
+//Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { UserService } from "./providers/user.service";
-import { AuthService } from "./providers/auth.service";
-import { DashboardModule } from "./dashboard/dashboard.module";
-import { AuthGuard } from "./guards/auth.guard";
-import { RoleGuard } from "./guards/role.guard";
 import { RegisterComponent } from './register/register.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+//Guards
+import { AuthGuard, RoleGuard } from "./_guards";
+
+//Services
+import { ApiHandler, UserService, AuthService } from './_services';
+
 
 //ApiHandler
 export function handlerFunc(backend: XHRBackend, defaultOptions: RequestOptions){
@@ -26,7 +32,7 @@ export function handlerFunc(backend: XHRBackend, defaultOptions: RequestOptions)
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,9 @@ export function handlerFunc(backend: XHRBackend, defaultOptions: RequestOptions)
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(APP_ROUTES),
-    DashboardModule
+    DashboardModule,
+  ],
+  exports: [
   ],
   providers: [
     AuthGuard,

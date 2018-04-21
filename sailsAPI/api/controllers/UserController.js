@@ -14,7 +14,8 @@ registration: function (req, res) {
 
   //Register new user to database
   User.create({
-      name: req.body.name,
+      firstname: req.body.firstname,
+			lastname: req.body.lastname,
       email: req.body.email,
       password: req.body.password
       }).exec(function callback(err, user) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from "./providers/user.service";
-import { JwtHelper } from "./helpers/jwt-helper";
+import { UserService } from "./_services/user.service";
+import { JwtHelper } from "./_helpers/jwt-helper";
 
 @Component({
   selector: 'app-root',

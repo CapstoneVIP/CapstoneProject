@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {UserService} from "./user.service";
-import {ApiHandler} from "./api-handler.service";
-import {JwtHelper} from "../helpers/jwt-helper";
-import {Observable} from "rxjs";
-import {RequestMethod} from "@angular/http";
+import { Injectable } from '@angular/core';
+import { UserService } from "./user.service";
+import { ApiHandler } from "./api-handler.service";
+import { JwtHelper } from "../_helpers/jwt-helper";
+import { Observable } from "rxjs";
+import { RequestMethod } from "@angular/http";
 
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -52,6 +52,20 @@ export class AuthService {
   clear(): void {
     localStorage.clear();
   }
+
+  /**
+   * this will register a user to the database (Default_User)
+   * @param firstname
+   * @param lastname
+   * @param email
+   * @param password
+   */
+   registration(firstname: string, lastname: string, email: string, password: string): Observable<string> {
+     return this._apiHandler.callService("/user/registration", RequestMethod.Post, {firstname: firstname, lastname: lastname, email: email, password: password })
+     .map(res => <string>res.text());
+   }
+
+
 
   /**
    * this returns the token for the user

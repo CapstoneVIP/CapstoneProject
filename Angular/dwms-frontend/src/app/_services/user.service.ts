@@ -1,10 +1,10 @@
 //Service used to manipulate the current user who is logged in
-import {Injectable} from '@angular/core';
-import {IUser} from "../interfaces/iuser";
+import { Injectable } from '@angular/core';
+import { User } from "../_models/user.model";
 
 @Injectable()
 export class UserService {
-  private user: IUser;
+  private user: User;
 
   constructor() {
   }
@@ -13,15 +13,15 @@ export class UserService {
    * this is used to set our user object for current logged in user
    * @param user
    */
-  set(user: IUser): void {
+  set(user: User): void {
     this.user = user;
   }
 
   /**
    * this is used to get our user
-   * @returns {IUser}
+   * @returns {User}
    */
-  get(): IUser {
+  get(): User {
     return this.user;
   }
 
