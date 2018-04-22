@@ -16,10 +16,10 @@ module.exports =   {
       type: 'string',
       required: true
     },
-		lastname: {
-			type: 'string',
-			required: true
-		},
+    lastname: {
+      type: 'string',
+      required: true
+    },
     roles: {
       type: 'string',
       defaultsTo: "DEFAULT_USER"
