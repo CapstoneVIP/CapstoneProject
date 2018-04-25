@@ -1,64 +1,82 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable } from "rxjs/Rx";
+import { HttpClient } from "@angular/common/http";
+import { Location } from "../../_models/location.model";
 import { latLng, LatLng, tileLayer, marker, polyline, icon } from 'leaflet';
+import { MapService} from "../../_services/map.service";
+import * as L from "leaflet";
+import "rxjs/add/operator/catch";
 
-import { LeafletModel } from '../../_models/leaflet.model';
 
 @Component({
   selector: 'app-leaflet',
   templateUrl: './leaflet.component.html',
+  styleUrls: ['./leaflet.component.css']
 })
-export class LeafletComponent {
- 
-// Define our base layers so we can reference them multiple times
-  osmMaps = tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-  });
- 
-  // Marker for the top of Mt. Ranier
-  center_marker = marker([ 41.247106, -96.016764], {
-    icon: icon({
-      iconSize: [ 25, 41 ],
-      iconAnchor: [ 13, 41 ],
-      iconUrl: 'leaflet/marker-icon.png',
-      shadowUrl: 'leaflet/marker-shadow.png'
-    })
-  });
 
-  /* Path from paradise to summit - most points omitted from this example for brevity
-  route = polyline([[ 46.78465227596462,-121.74141269177198 ],
-    [ 46.80047278292477, -121.73470708541572 ],
-    [ 46.815471360459924, -121.72521826811135 ],
-    [ 46.8360239546746, -121.7323131300509 ],
-    [ 46.844306448474526, -121.73327445052564 ],
-    [ 46.84979408048093, -121.74325201660395 ],
-    [ 46.853193528950214, -121.74823296256363 ],
-    [ 46.85322881676257, -121.74843915738165 ],
-    [ 46.85119913890958, -121.7519719619304 ],
-    [ 46.85103829018772, -121.7542376741767 ],
-    [ 46.85101557523012, -121.75431755371392 ],
-    [ 46.85140013694763, -121.75727385096252 ],
-    [ 46.8525277543813, -121.75995212048292 ],
-    [ 46.85290292836726, -121.76049157977104 ],
-    [ 46.8528160918504, -121.76042997278273 ]]);
-    */
+export class LeafletComponent implements OnInit, OnDestroy {
+  
+  public address: string;
+  private subscription;
+  private interval: number;
+  public baseMaps: any;
 
-  // Layers control object with our two base layers and the three overlay layers
-  layersControl = {
-    baseLayers: {
-      'osmMaps': this.osmMaps,
-    },
-    overlays: {
-      'center_marker': this.center_marker,
-    }
-  };
+  constructor(private _mapservice: MapService, private http: HttpClient) {
+    this.address = "";
+    this.interval = 3000;
+  }
 
+  ngOnInit() {
 
-  // Set the initial set of displayed layers (we could also use the leafletLayers input binding for this)
-  options = {
-    layers: [ this.osmMaps, this.center_marker],
-    zoom: 17,
-    center: latLng([ 41.247106, -96.016764])
-  };
+    //Choice of tile providers to render
+    this.baseMaps = {
+      OpenStreetMap: L.tileLayer(
+        "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      ),
+      Esri: L.tileLayer(
+        "http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+      ),
+      CartoDB: L.tileLayer(
+        "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"   
+      )
+    }; 
 
+     //Define basic start location information
+     const location = new Location();
+       location.address = "Omaha, Nebraska, United Sates";
+       location.latlng = L.latLng(41.247433, -96.016178); //PKI roundabout
+
+     //Define the bounds within UNO's campus
+     const botLeft = L.latLng(41.225214, -96.038337); //SW Baxter Arena
+     const topRight = L.latLng(41.267042, -95.994215); //NE Dodge Street
+     const bounds = L.latLngBounds(botLeft, topRight);
+
+     //Define basic map constraints
+     const map = L.map("map", {
+       zoomControl: false,
+       center: location.latlng,
+       zoom: 16,
+       minZoom: 12,
+       maxZoom: 18,
+       maxBounds: bounds,
+       layers: [this.baseMaps.OpenStreetMap]
+     });
+     
+     //Leaflet control structures
+     L.control.zoom({ position: "topright" }).addTo(map);
+     L.control.layers(this.baseMaps).addTo(map);
+     L.control.scale().addTo(map);
+     this.address = location.address;
+     this._mapservice.map = map;  
+  
+     //RxJS interval call every 3 seconds
+     this.subscription = Observable.interval(this.interval).subscribe(x => {
+       this._mapservice.markerDecision();
+     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this._mapservice.flag = true;
+  }
 }

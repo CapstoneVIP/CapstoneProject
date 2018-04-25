@@ -23,7 +23,12 @@ module.exports = {
       type: 'number',
 			required: false,
 			allowNull: true
-		}
-	}
+		},
+			mph: {
+				type: 'number',
+				required: false,
+				allowNull: true
+			}
+	},
 };
 

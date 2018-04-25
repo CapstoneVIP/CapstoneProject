@@ -7,6 +7,7 @@
 
 module.exports = {
 
+
 //Add a shuttle to the database 
 addShuttle: function (req, res) {
   Shuttle.create({
@@ -18,9 +19,19 @@ addShuttle: function (req, res) {
 		});
 	},
 	
-	//Ommitting the password for json response
-  customToJSON: function() {
-     return _(this)
-  },
+	//GET a JSON response with 'id', 'latitude', longitude'
+	getShuttleCoords: async function (req, res) {
+		var coords = await Shuttle.findOne({
+			where: {id: req.param('id')},
+			select: ['latitude', 'longitude']
+		});
+		
+		if(!coords) {
+			return res.notFound('Could not find shuttle');
+		}
+		
+		return res.json(coords);
+		
+	}
 };
 

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { UserService } from "./user.service";
-import { ApiHandler } from "./api-handler.service";
 import { JwtHelper } from "../_helpers/jwt-helper";
-import { Observable } from "rxjs";
 import { RequestMethod } from "@angular/http";
-
+import { Coords } from '../_models/coords.model'
+import { Observable } from "rxjs";
+import { ApiHandler } from "./api-handler.service";
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
@@ -12,12 +12,9 @@ import 'rxjs/add/operator/map';
 export class AuthService {
   private _jwt: JwtHelper = new JwtHelper();
   private redirectUrl: string;
-  //Holds messages to be displayed in login for redirects
   public message: string;
 
-  constructor(private _apiHandler: ApiHandler, private _userService: UserService) {
-  }
-
+  constructor(private _apiHandler: ApiHandler, private _userService: UserService) {}
 
   /**
    * check for expiration and if token is still existing or not
@@ -64,8 +61,6 @@ export class AuthService {
      return this._apiHandler.callService("/user/registration", RequestMethod.Post, {firstname: firstname, lastname: lastname, email: email, password: password })
      .map(res => <string>res.text());
    }
-
-
 
   /**
    * this returns the token for the user

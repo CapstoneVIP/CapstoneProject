@@ -31,11 +31,9 @@ module.exports.routes = {
    * for configuration options and examples.                                  *
    *                                                                          *
    ***************************************************************************/
-	//User
 	'post /user/registration': 'UserController.registration',
   'post /user/login': 'UserController.login',
   'get /user/token': 'UserController.token',
-	
-	//Shuttle
-	'post /shuttle/addShuttle': 'ShuttleController.addShuttle'
+	'post /shuttle/addShuttle': 'ShuttleController.addShuttle',
+	'get /shuttle/getShuttleCoords': 'ShuttleController.getShuttleCoords'
 };

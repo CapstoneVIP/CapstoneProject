@@ -38,7 +38,7 @@ registration: function (req, res) {
     if (!_.has(req.body, 'email') || !_.has(req.body, 'password')) {
       return res.serverError("No field should be empty.");
     }
-
+		
     /**
      * check if the username matches any email
      */
@@ -57,7 +57,7 @@ registration: function (req, res) {
 
         //save the date the token was generated for already inside toJSON()
         var token = jwt.sign(user.toJSON(), "this is my secret key", {
-          expiresIn: '10m'
+          expiresIn: '60m'		//Session expiration
         });
 
         //return the token here

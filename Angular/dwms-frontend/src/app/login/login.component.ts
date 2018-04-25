@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
       }, (error)=> {
         this.loading = false;
         this.message = error;
-      //  alert(error);
+        //alert(error);
         console.error("auth error", error);
       });
   }
