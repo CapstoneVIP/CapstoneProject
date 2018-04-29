@@ -1,4 +1,6 @@
-//Model for user object coming FROM server
+/**
+ * Model for user object coming FROM server
+*/
 export class User {
   id: string;
   firstname: string;

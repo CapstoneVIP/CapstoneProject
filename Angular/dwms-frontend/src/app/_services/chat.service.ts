@@ -16,13 +16,18 @@ export class ChatService {
 
   constructor() { }
 
-  //.emit allows for custom event
+  /**
+   * Desc: Sends messages to the chat-server.js via
+   * socket.io
+  */
   sendMessage(message){
-    //Send the message model (Object)
     this.socket.emit('add-message', message);   
   }
 
-  //.on is the decision structure for the incoming .emit event
+  /**
+  * Desc: Receives message from te chat-server.js via
+  * socket.io event
+  */
   getMessages() {
     let observable = new Observable(observer => {
       this.socket = io(this.url);

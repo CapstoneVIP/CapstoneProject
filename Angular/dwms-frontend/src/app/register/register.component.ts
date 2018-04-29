@@ -12,9 +12,9 @@ import { RouterLink } from '@angular/router';;
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  private message: string;
-  private registrationForm;
-  private loading: boolean = false;
+  public message: string;
+  public registrationForm;
+  public loading: boolean = false;
 
   constructor(private _authService: AuthService, private fb: FormBuilder, private _router: Router) {
     this.createForm();
@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
    * and after authentication is successful we move to the redirectUrl if it was existing else
    * to dashboard
    */
-  private submitted() {
+  public submitted() {
     if (this.registrationForm.invalid)
       return;
 

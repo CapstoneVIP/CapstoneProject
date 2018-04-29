@@ -19,13 +19,20 @@ export class MapService {
     this.flag = true;
   }
 
-  //API call
+  /**
+   * Desc: Using the API call getShuttleCoords, will return an updated
+   * latitude and longitude value.
+  */
   getShuttleCoords(id: number): Observable<Coords> {
     return this._apiHandler.callService("/shuttle/getShuttleCoords", RequestMethod.Get, {id: id})
     .map(res => <Coords>res.json());
   }
 
-  //Marker decison logic, insserts a new marker, then updates that single marker ONLY
+  /**
+  * Desc: A basic control structure for adding or updating a marker. 
+  * IF marker is not already created, then create one via method addMarker()
+  * ELSE update the created marker with appropiate information.
+  */
   markerDecision () {
     //API call /shuttle/getShuttleCoords
     this.getShuttleCoords(215)
@@ -44,7 +51,9 @@ export class MapService {
       });
   }
 
-  //Updates a single marker
+  /**
+   * Desc: Updates a marker, changes the popup infomration as well. 
+  */
   private updateMarker(lat, lng) {
     const shortLat = Math.round(lat * 1000000) / 1000000;
     const shortLng = Math.round(lng * 1000000) / 1000000;
@@ -66,7 +75,10 @@ export class MapService {
     this.marker.setLatLng(newLatLng);
   }
 
-  //Inserts a marker, returns that marker to set the local 'marker'
+  /**
+   * Desc: Inserts a new marker, this marker acts as the base marker from 
+   * which the udpateMarker will then adjust acoorindgly during runtime
+  */
   private addMarker(lat, lng) {
       const shortLat = Math.round(lat * 1000000) / 1000000;
       const shortLng = Math.round(lng * 1000000) / 1000000;

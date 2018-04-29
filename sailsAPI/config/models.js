@@ -11,7 +11,9 @@ module.exports.models = {
   //Sets datastore to the default located at config/datastores.js
   datastore: 'default',
 
-  
+	//Keep the database data safe
+  migrate: 'safe',
+	
   // These attributes will be added to all of your models. 
   attributes: {
     id: { type: 'number', autoIncrement: true, },

@@ -29,10 +29,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
    *
    * 2. if the above from 1 pass through without returning it means it was false all the way
    * so we handle it by passing a message and updating the redirectUrl so users can continue where they left off
-   * after authentication
-   * @param next
-   * @param state
-   * @returns {any}
+   * after authentication.
    */
   private performCheck(next: ActivatedRouteSnapshot,
                        state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {

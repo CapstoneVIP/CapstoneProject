@@ -23,7 +23,9 @@ export class JwtHelper {
     return this.b64DecodeUnicode(output);
   }
 
-  // credits for decoder goes to https://github.com/atk
+  /** 
+   * credits for decoder goes to https://github.com/atk
+  **/
   private b64decode(str: string): string {
     let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     let output: string = '';

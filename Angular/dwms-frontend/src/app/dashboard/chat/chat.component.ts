@@ -17,6 +17,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   
   constructor( private _userService: UserService, private _chatService:ChatService) { }
   
+  /**
+   * Desc: Works with the _chatService to actually send a message to the
+   * chat-server.js file. 
+  */
   sendMessage() {
     //Send information to server (via chat.service.ts)
     this.message.text = this.message.text;
@@ -24,6 +28,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.message.text = '';
   }
 
+  /**
+  * Desc: On component initialization set up message parameters based off of
+  * th elogged in user credentials
+  */
   ngOnInit() {
 
     //Create the message struct
@@ -37,7 +45,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   	})
   }
 
-  //On leaving component
+  /**
+  * Desc: On component destroy set message to null, and unsubscribe the connection
+  * to the chat server
+  */
   ngOnDestroy() {
     this.message = null;
   	this.connection.unsubscribe();

@@ -1,3 +1,6 @@
+/**
+ *This model defines the message parameters 
+*/
 export class Message {
 	firstname: string;
 	lastname: string;

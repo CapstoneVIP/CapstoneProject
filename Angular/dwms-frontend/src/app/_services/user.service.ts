@@ -1,4 +1,3 @@
-//Service used to manipulate the current user who is logged in
 import { Injectable } from '@angular/core';
 import { User } from "../_models/user.model";
 
@@ -11,7 +10,6 @@ export class UserService {
 
   /**
    * this is used to set our user object for current logged in user
-   * @param user
    */
   set(user: User): void {
     this.user = user;
@@ -19,7 +17,6 @@ export class UserService {
 
   /**
    * this is used to get our user
-   * @returns {User}
    */
   get(): User {
     return this.user;

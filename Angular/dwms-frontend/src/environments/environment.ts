@@ -6,4 +6,4 @@
 export const environment = {
   production: false,
   endpoint: 'http://174.138.38.245:1337/'
-};
+ }; 

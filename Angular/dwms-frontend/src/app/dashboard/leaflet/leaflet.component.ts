@@ -26,6 +26,11 @@ export class LeafletComponent implements OnInit, OnDestroy {
     this.interval = 3000;
   }
 
+  /**
+  * Desc: On component creating this handles the wordload of the leaflet component
+  * It handles intialization as well as the interval call to allow the dynamic updates
+  * of shuttle on the map. 
+  */
   ngOnInit() {
 
     //Choice of tile providers to render
@@ -75,6 +80,10 @@ export class LeafletComponent implements OnInit, OnDestroy {
      });
   }
 
+
+  /**
+  * Desc: Stop the RxJS interval service, and set the marker flag to false
+  */
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this._mapservice.flag = true;

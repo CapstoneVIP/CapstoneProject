@@ -11,9 +11,9 @@ import { RouterLink } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
-  private message: string;
-  private loginForm;
-  private loading: boolean = false;
+  public message: string;
+  public loginForm;
+  public loading: boolean = false;
 
   constructor(private _authService: AuthService, private fb: FormBuilder, private _router: Router) {
     this.createForm();
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
    * and after authentication is successful we move to the redirectUrl if it was existing else
    * to dashboard
    */
-  private submitted() {
+  public submitted() {
     if (this.loginForm.invalid)
       return;
 

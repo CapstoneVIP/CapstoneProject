@@ -17,23 +17,28 @@ export class AuthService {
   constructor(private _apiHandler: ApiHandler, private _userService: UserService) {}
 
   /**
-   * check for expiration and if token is still existing or not
-   * @return {boolean}
+   * Desc: check for expiration and if token is still existing or not
    */
   isAuthenticated(): boolean {
     return localStorage.getItem('token') != null && !this._jwt.isTokenExpired();
   }
 
+  /**
+  * Desc: Set the redirect URL
+  */
   setRedirectUrl(url: string): void {
     this.redirectUrl = url;
   }
 
+  /**
+   * Desc: Get the redirect URL
+  */
   getRedirectUrl(): string {
     return this.redirectUrl;
   }
 
   /**
-   *Used to logout the user
+   * Desc: Used to logout the user
    */
    logout(): Observable<string> {
     return this._apiHandler.callService(`/user/logout/${this._userService.get().id}`, RequestMethod.Get)
@@ -44,18 +49,14 @@ export class AuthService {
   }
 
   /**
-   * this is used to clear anything that needs to be removed
+   * Desc: this is used to clear anything that needs to be removed
    */
   clear(): void {
     localStorage.clear();
   }
 
   /**
-   * this will register a user to the database (Default_User)
-   * @param firstname
-   * @param lastname
-   * @param email
-   * @param password
+   * Desc: this will register a user to the database (Default_User)
    */
    registration(firstname: string, lastname: string, email: string, password: string): Observable<string> {
      return this._apiHandler.callService("/user/registration", RequestMethod.Post, {firstname: firstname, lastname: lastname, email: email, password: password })
@@ -63,9 +64,7 @@ export class AuthService {
    }
 
   /**
-   * this returns the token for the user
-   * @param email
-   * @param password
+   * Desc: this returns the token for the user
    */
   authenticate(email: string, password: string): Observable<string> {
     return this._apiHandler.callService("/user/login", RequestMethod.Post, {email: email, password: password})
@@ -77,13 +76,8 @@ export class AuthService {
   }
 
   /**
-   * this is used to alert our caller if we should go get token for next request or
+   * Desc: this is used to alert our caller if we should go get token for next request or
    * to be carried out request
-   *
-   * @param threshold_seconds is like a threshold to check if we should or not check for token
-   * default we use 2min before the token expires
-   *
-   * @return {boolean}
    */
   shouldIGetToken(threshold_seconds: number = 120): boolean {
     let expDate = this._jwt.getTokenExpirationDate().valueOf() - (threshold_seconds * 1000);
@@ -92,8 +86,7 @@ export class AuthService {
   }
 
   /**
-   * this is used to retrieve a newer token since the current one is going to expire soon
-   *
+   * Desc: this is used to retrieve a newer token since the current one is going to expire soon
    */
   retrieveToken(): Observable<string> {
     return this._apiHandler.callService("/user/token", RequestMethod.Get)

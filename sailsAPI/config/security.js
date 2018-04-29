@@ -30,7 +30,7 @@ module.exports.security = {
 
    cors: {
      allRoutes: true,
-     allowOrigins: ['http://localhost:4200'],
+     allowOrigins: ['http://localhost:4200','http://dwms.hopto.org'],
      allowCredentials: false,
      allowRequestMethods: 'GET,PUT,POST,DELETE,OPTIONS,HEAD',
      allowRequestHeaders: 'content-type, Authorization'
